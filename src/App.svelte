@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { Map, TileLayer} from 'sveaflet'
-  import PubSelect from './lib/components/PubSelect.svelte';
-
+  import "./app.css";
+  import { Map, TileLayer } from 'sveaflet';
+  import PubSearch from "./lib/components/ui/pub-search.svelte";
+  
   const pubs = [
-    {value: "pub1", label: "Pub 1"},
-    {value: "pub2", label: "Pub 2"},
-    {value: "pub3", label: "Pub 3"}
+    { value: "pub1", label: "Pub 1" },
+    { value: "pub2", label: "Pub 2" },
+    { value: "pub3", label: "Pub 3" }
   ];
-
+  
   let selectedPub = $state("pub1");
+  let query = $state("")
 </script>
 
-<div style="width: auto;">
-  <PubSelect items={pubs} value={selectedPub} />
-</div>
+<div style="display:flex; width:100%; height:100%; position:relative; justify-content:center;">  
+  <PubSearch bind:value={query} {pubs}/>
 
-<div style="width:500px; height:500px">
   <Map
     options={{
       center: [50,0],
